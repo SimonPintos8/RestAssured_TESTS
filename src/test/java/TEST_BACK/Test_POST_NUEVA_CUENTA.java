@@ -15,8 +15,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Test_POST {
-    static ExtentSparkReporter info = new ExtentSparkReporter("reportes/APIPOST-Test.html");
+public class Test_POST_NUEVA_CUENTA {
+    static ExtentSparkReporter info = new ExtentSparkReporter("reportes/APIPOST-NUEVA-CUENTA-Test.html");
     static ExtentReports extent;
     ExtentTest test;
 
@@ -33,23 +33,18 @@ public class Test_POST {
 
     @Test
     @Tag("POST")
-    public void POST_Test01() {
+    public void POST_Apertura_nueva_cuenta() {
         test = extent.createTest("Primer Test POST de la API ReqRes");
         test.log(Status.INFO, "Comienza el Test");
 
         System.out.println("Iniciando Primer Test Post");
         test.log(Status.INFO, "Iniciando Primer Test Post");
-
-        JsonObject request = new JsonObject();
-        request.addProperty("name", "PACE");
-        request.addProperty("job", "PROFESOR");
-
         given()
                 .contentType("application/json")
-                .body(request)
-                .when().post("https://reqres.in/api/users")
+                .auth().preemptive().basic("pakitoatr", "123456")
+                .when().post("https://parabank.parasoft.com/parabank/services_proxy/bank/createAccount?customerId=15986&newAccountType=1&fromAccountId=18894")
                 .then()
-                .statusCode(201)
+                .statusCode(200)
                 .log().status()
                 .log().body();
 
@@ -58,31 +53,23 @@ public class Test_POST {
     }
 
     @Test
-    @Tag("POST")
-    public void POST_Test02() {
-        test = extent.createTest("Segundo Test POST de la API ReqRes");
+    @Tag("POST2")
+    public void POST_Transferencia_exitosa() {
+        test = extent.createTest("Primer Test POST de la API ReqRes");
         test.log(Status.INFO, "Comienza el Test");
 
-        System.out.println("Iniciando Segundo Test Post");
-        test.log(Status.INFO, "Iniciando Segundo Test Post");
-
-        JsonObject request = new JsonObject();
-        request.addProperty("name", "SERGIO");
-        request.addProperty("job", "PROFESOR");
-
+        System.out.println("Iniciando Primer Test Post");
+        test.log(Status.INFO, "Iniciando Primer Test Post");
         given()
                 .contentType("application/json")
-                .body(request)
-                .when().post("https://reqres.in/api/users")
+                .auth().preemptive().basic("pakitoatr", "123456")
+                .when().post("https://parabank.parasoft.com/parabank/services_proxy/bank/transfer?fromAccountId=18894&toAccountId=19005&amount=10")
                 .then()
-                .statusCode(201)
-                .body("name", equalTo("SERGIO"))
-                .body("job", equalTo("PROFESOR"))
-                .body("createdAt", containsString("2024-06-06"))
+                .statusCode(200)
                 .log().status()
                 .log().body();
 
-        System.out.println("Segundo Test Post finalizado");
-        test.log(Status.PASS, "Segundo Test Post finalizado");
+        System.out.println("Primer Test Post finalizado");
+        test.log(Status.PASS, "Primer Test Post finalizado");
     }
 }
