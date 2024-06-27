@@ -9,7 +9,9 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import reportes.ReportFactory;
 
-public class Test_GET_REGISTRO {
+import static io.restassured.RestAssured.given;
+
+public class Tests_GETS {
     static ExtentSparkReporter info = new ExtentSparkReporter("reportes/APIGET-REGISTRO-Test.html");
     static ExtentReports extent;
 
@@ -34,6 +36,28 @@ public class Test_GET_REGISTRO {
         }
         System.out.println("Primer Test Get finalizado");
         test.log(Status.PASS, "Primer Test Get finalizado");
+    }
+
+    @Test
+    @Tag("GET_ACCOUNTS")
+    public void get_accounts() {
+        ExtentTest test;
+        test = extent.createTest("Primer Test GET ACCOUNTS");
+        test.log(Status.INFO, "Comienza el Test");
+
+        System.out.println("Iniciando Primer Test GET ACCOUNTS");
+        test.log(Status.INFO, "Iniciando Primer Test de Get accounts");
+        given()
+                .contentType("application/json")
+                .auth().preemptive().basic("pakitoatr", "123456")
+                .when().get("https://parabank.parasoft.com/parabank/services_proxy/bank/accounts/20781/transactions/month/All/type/All")
+                .then()
+                .statusCode(200)
+                .log().status()
+                .log().body();
+
+        System.out.println("Primer Test de GET ACCOUNTS finalizado");
+        test.log(Status.PASS, "Primer Test de Get ACCOUNTS finalizado");
     }
 
     @AfterAll

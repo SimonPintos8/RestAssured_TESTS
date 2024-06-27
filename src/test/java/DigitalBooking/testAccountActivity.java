@@ -58,9 +58,9 @@ public class testAccountActivity {
             }
             accountActivityPage.clickSpecificAccount();
             if (accountActivityPage.getTextDetails().equals("Account Details")) {
-                System.out.println("Texto encontrado: " + accountActivityPage.getTextDetails());
+                test.log(Status.PASS, "Texto encontrado: " + accountActivityPage.getTextDetails());
             } else {
-                System.out.println("Account Details no encontrado.");
+                test.log(Status.FAIL, "Account Details no encontrado.");
             }
             accountActivityPage.clickActivityPeriod();
             accountActivityPage.clickSpecificOptionActivity();

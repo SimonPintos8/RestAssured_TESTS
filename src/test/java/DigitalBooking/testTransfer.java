@@ -63,9 +63,10 @@ public class testTransfer {
             transferPage.clickCompleteTransferButton();
             Thread.sleep(10000);
             if(transferPage.getTextCompletedTransfer().equals("Transfer Complete!")) {
-                System.out.println(transferPage.getTextCompletedTransfer() + ", Transferencia exitosa!");
+                test.log(Status.PASS, "Transferencia exitosa!");
+
             } else {
-                System.out.println("Transferencia no realizada");
+                test.log(Status.FAIL, "Transferencia no realizada!");
             }
         } catch (Exception e) {
             test.log(Status.FAIL, "FALLO EL TEST DE REALIZAR TRANSFERENCIAS" + e.getMessage());
