@@ -46,16 +46,16 @@ public class testAbrirNuevaCuenta {
     @Tag("EXITOSA")
     public void aperturaCuentaExitosa() throws InterruptedException {
         ExtentTest test = extent.createTest("APERTURA DE CUENTA EXITOSA");
-        AbrirNuevaCuentaPage abrirNuevaCuentaPage = new AbrirNuevaCuentaPage(driver, wait);
+        OpenNewAccountPage openNewAccountPage = new OpenNewAccountPage(driver, wait);
 
         try {
             Thread.sleep(2000);
-            abrirNuevaCuentaPage.clickAbrirNuevaCuenta();
-            abrirNuevaCuentaPage.clickDesplegarMenuOpcionesButton();
-            abrirNuevaCuentaPage.clickElegirSavingsButton();
-            abrirNuevaCuentaPage.clickCrearNuevaCuentaButton();
+            openNewAccountPage.clickOpenNewAccount();
+            openNewAccountPage.clickMenuOptions();
+            openNewAccountPage.clickChooseSavingsBtn();
+            openNewAccountPage.clickCreateNewAccount();
             Thread.sleep(2000);
-            if (abrirNuevaCuentaPage.obtenerTextoCreacion().equals("Congratulations, your account is now open.")) {
+            if (openNewAccountPage.getCreationText().equals("Congratulations, your account is now open.")) {
                 test.log(Status.PASS, "Apertura de cuenta alcanzado con éxito!");
             } else {
                 test.log(Status.FAIL, "Apertura de cuenta incompleta");

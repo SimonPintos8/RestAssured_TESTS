@@ -13,7 +13,7 @@ import reportes.ReportFactory;
 import static io.restassured.RestAssured.given;
 
 public class Tests_POSTS {
-    static ExtentSparkReporter info = new ExtentSparkReporter("reportes/APIPOST-NUEVA-CUENTA-Test.html");
+    static ExtentSparkReporter info = new ExtentSparkReporter("reportes/POSTS-TESTS-BACKEND.html");
     static ExtentReports extent;
     ExtentTest test;
 
@@ -29,10 +29,10 @@ public class Tests_POSTS {
     }
 
     @Test
-    @Tag("POST")
+    @Tag("POST_APERTURA_NUEVA_CUENTA")
     public void POST_Apertura_nueva_cuenta() {
-        test = extent.createTest("Primer Test POST de una nueva cuenta");
-        test.log(Status.INFO, "Comienza el Test");
+        test = extent.createTest("Primer Test POST de apertura de una nueva cuenta");
+        test.log(Status.INFO, "<<Comienza el Test>>");
 
         System.out.println("Iniciando Primer Test Post de una nueva cuenta");
         test.log(Status.INFO, "Iniciando Primer Test Post de una nueva cuenta");
@@ -46,14 +46,14 @@ public class Tests_POSTS {
                 .log().body();
 
         System.out.println("Primer Test Post de una nueva cuenta finalizado!");
-        test.log(Status.PASS, "Primer Test Post de una nueva cuenta finalizado");
+        test.log(Status.PASS, "<<Primer Test Post de apertura de una nueva cuenta finalizado>>");
     }
 
     @Test
-    @Tag("POST")
+    @Tag("POST_DESCARGA_DE_FONDOS")
     public void POST_Descarga_fondos() {
         test = extent.createTest("Primer Test POST de Descarga de fondos");
-        test.log(Status.INFO, "Comienza el Test");
+        test.log(Status.INFO, "<<Comienza el Test>>");
 
         System.out.println("Iniciando Primer Test Post de Descarga de Fondos");
         test.log(Status.INFO, "Iniciando Primer Test Post de descarga de fondos");
@@ -67,7 +67,7 @@ public class Tests_POSTS {
                 .log().body();
 
         System.out.println("Primer Test Post de descarga de fondos finalizado");
-        test.log(Status.PASS, "Primer Test Post de descarga de fondos finalizado");
+        test.log(Status.PASS, "<<Primer Test Post de descarga de fondos finalizado>>");
     }
 
 }

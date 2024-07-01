@@ -43,7 +43,7 @@ public class Tests_GETS {
     public void get_accounts() {
         ExtentTest test;
         test = extent.createTest("Primer Test GET ACCOUNTS");
-        test.log(Status.INFO, "Comienza el Test");
+        test.log(Status.INFO, "<<Comienza el Test>>");
 
         System.out.println("Iniciando Primer Test GET ACCOUNTS");
         test.log(Status.INFO, "Iniciando Primer Test de Get accounts");
@@ -57,7 +57,7 @@ public class Tests_GETS {
                 .log().body();
 
         System.out.println("Primer Test de GET ACCOUNTS finalizado");
-        test.log(Status.PASS, "Primer Test de Get ACCOUNTS finalizado");
+        test.log(Status.PASS, "<<Primer Test de Get ACCOUNTS finalizado>>");
     }
 
     @AfterAll

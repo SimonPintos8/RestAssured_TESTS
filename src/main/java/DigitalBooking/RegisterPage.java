@@ -2,13 +2,12 @@ package DigitalBooking;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegisterPage extends BasePage{
-    private By btnRegistrarse = By.xpath("//*[@id=\"loginPanel\"]/p[2]/a"); // Boton registrarse
-    private By nombre = By.xpath("//*[@id=\"customer.firstName\"]");
-    private By apellido = By.xpath("//*[@id=\"customer.lastName\"]");
+    private By btnRegister = By.xpath("//*[@id=\"loginPanel\"]/p[2]/a"); // Boton registrarse
+    private By name = By.xpath("//*[@id=\"customer.firstName\"]");
+    private By last_name = By.xpath("//*[@id=\"customer.lastName\"]");
     private By address = By.xpath("//*[@id=\"customer.address.street\"]");
     private By city = By.xpath("//*[@id=\"customer.address.city\"]");
     private By state = By.xpath("//*[@id=\"customer.address.state\"]");
@@ -18,9 +17,9 @@ public class RegisterPage extends BasePage{
     private By username = By.xpath("//*[@id=\"customer.username\"]");
     private By password = By.xpath("//*[@id=\"customer.password\"]");
     private By repassword = By.xpath("//*[@id=\"repeatedPassword\"]");
-    private By btnCrearCuenta = By.xpath("//*[@id=\"customerForm\"]/table/tbody/tr[13]/td[2]/input");
+    private By btnCreateAccount = By.xpath("//*[@id=\"customerForm\"]/table/tbody/tr[13]/td[2]/input");
 
-    private By exito = By.xpath("//*[@id=\"rightPanel\"]/p");
+    private By successMessage = By.xpath("//*[@id=\"rightPanel\"]/p");
 
 
     /**Constructor de la clase RegisterPage
@@ -34,7 +33,7 @@ public class RegisterPage extends BasePage{
      * @throws InterruptedException si el hilo es interrumpido mientras espera
      */
     public void clickCrearCuenta() throws InterruptedException {
-        this.click(btnCrearCuenta);
+        this.click(btnCreateAccount);
     }
 
     /** Ingresa el nombre proporcionado en el campo de nombre.
@@ -42,7 +41,7 @@ public class RegisterPage extends BasePage{
      * @throws InterruptedException si el hilo es interrumpido mientras espera
      */
     public void escribirNombre(String name) throws InterruptedException {
-        this.sendText(name, nombre);
+        this.sendText(name, this.name);
     }
 
     /** Ingresa el apellido proporcionado en el campo de apellido.
@@ -50,7 +49,7 @@ public class RegisterPage extends BasePage{
      * @throws InterruptedException si el hilo es interrumpido mientras espera
      */
     public void escribirApellido(String name) throws InterruptedException {
-        this.sendText(name, apellido);
+        this.sendText(name, last_name);
     }
 
     public void escribirAddress(String direccion) throws InterruptedException {
@@ -102,7 +101,7 @@ public class RegisterPage extends BasePage{
      * @throws InterruptedException si el hilo es interrumpido mientras espera
      */
     public void clickRegistrarse() throws InterruptedException {
-        this.click(btnRegistrarse);
+        this.click(btnRegister);
     }
 
 
@@ -111,7 +110,7 @@ public class RegisterPage extends BasePage{
      * @throws InterruptedException si el hilo es interrumpido mientras espera
      */
     public String cuentaCreadaExito() throws InterruptedException {
-        String res = this.getText(exito);
+        String res = this.getText(successMessage);
         System.out.println("Resultado Card value: " + res);
         return res;
     }
